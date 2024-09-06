@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: spring-cache-example
+
+server:
+  port: ${PORT:8080}
+  tomcat:
+    relaxed-query-chars: '\,^,|,{,},[,]'
+  shutdown: graceful
+
+logging:
+  config: "classpath:log4j2-spring.xml"
+  logLevel: ${LOG_LEVEL:debug}
+  path: ${LOGGING_PATH:logs}
+  filename: ${LOGGING_FILENAME:spring-cache-example}
+  maxHistory: ${LOGGING_MAX_HISTORY:100}
+  sizeCap: ${LOGGING_SIZE_CAP:50MB}
+  intervalCap: ${LOGGING_INTERVAL_CAP:1}
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    groups-order: DESC
+    operationsSorter: method
+    disable-swagger-default-url: true
+    display-request-duration: true
+  api-docs:
+    path: /api-docs
+  show-actuator: true
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
