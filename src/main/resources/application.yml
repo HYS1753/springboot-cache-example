@@ -1,6 +1,18 @@
 spring:
   application:
     name: spring-cache-example
+  data:
+    redis:
+      host: ${REDIS_HOST:127.0.0.1}
+      port: ${REDIS_PORT:6379}
+      username: ${REDIS_USERNAME:user}
+      password: ${REDIS_PASSWORD:password}
+      pool:
+        min-idle: 0     # 연결 풀이 항상 유지해야 하는 최소 idle connection 수 설정.(이 설정은 time-between-eviction-runs 설정 시간이 양수인 경우에 적용됨.)
+        max-idle: 8     # 연결 풀의 최대 idle connection 수 설정. 제한이 없는 경우 음수 값을 사용
+        max-active: 8   # 연결 풀의 최대 connection 수 설정. 제한이 없는 경우 음수 값을 사용
+        max-wait: 300   # 연결 풀이 모두 사용 중인 경우 연결이 가능해질 때까지 기다리는 시간 설정. 지정된 시간 동안에도 연결 가능한 풀이 없는 경우 예외 발생. 음수 값을 설정한 경우 연결 가능한 풀이 생기기까지 계속 대기함.
+        time-between-eviction-runs: 300   # 제거 스레드의 실행 시간 주기 설정. 음수 값이 지정된 경우 제거 스레드를 실행되지 않음. 제거 스레드를 통해서 min-idle, max-idle 에 설정된 수치를 넘어선 경우 불필요한 idle connection을 제거하여 리소스를 효율적으로 관리함.
 
 server:
   port: ${PORT:8080}
