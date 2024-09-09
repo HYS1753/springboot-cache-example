@@ -57,4 +57,12 @@ public class RestCacheTestController {
 
         return ResponseEntity.ok().body(result);
     }
+
+    @Operation(summary = "Redis 외부 캐쉬 제거 테스트", description = "Redis 외부 캐쉬 제거 테스트")
+    @GetMapping(value = "redis/evict")
+    public ResponseEntity<TestResult> redisEvictCache(@Validated @ParameterObject TestInput request) {
+        TestResult result = redisCacheService.evictCache(request);
+
+        return ResponseEntity.ok().body(result);
+    }
 }

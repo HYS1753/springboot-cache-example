@@ -1,6 +1,7 @@
 package srpingboot.application.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import srpingboot.application.dto.TestInput;
@@ -18,6 +19,14 @@ public class RedisCacheServiceImpl implements RedisCacheService {
         this.pauseProcess(3000);
         return TestResult.builder()
                 .message("success - " + request.getParam2())
+                .build();
+    }
+
+    @Override
+    @CacheEvict(cacheNames = "redisCache", key = "#request.param1", cacheManager = "RedisCacheManager")
+    public TestResult evictCache(TestInput request) {
+        return TestResult.builder()
+                .message("evict cache key : " + request.getParam1())
                 .build();
     }
 
