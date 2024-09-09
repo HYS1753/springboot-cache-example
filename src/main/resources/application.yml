@@ -7,6 +7,7 @@ spring:
       port: ${REDIS_PORT:6379}
       username: ${REDIS_USERNAME:user}
       password: ${REDIS_PASSWORD:password}
+      default-ttl: ${REDIS_DEFAULT_TTL:180}
       pool:
         min-idle: 0     # 연결 풀이 항상 유지해야 하는 최소 idle connection 수 설정.(이 설정은 time-between-eviction-runs 설정 시간이 양수인 경우에 적용됨.)
         max-idle: 8     # 연결 풀의 최대 idle connection 수 설정. 제한이 없는 경우 음수 값을 사용
