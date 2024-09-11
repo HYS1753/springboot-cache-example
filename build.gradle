@@ -20,6 +20,8 @@ repositories {
 dependencies {
 	// Spring
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-aop'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 	// Logger
@@ -34,6 +36,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 	implementation 'com.github.ben-manes.caffeine:caffeine:3.1.8'
 	implementation 'org.apache.commons:commons-pool2:2.11.1'
+	implementation 'io.github.resilience4j:resilience4j-spring-boot3:2.2.0'
+
 
 	// Etc
 	compileOnly 'org.projectlombok:lombok:1.18.24'
@@ -42,6 +46,8 @@ dependencies {
 
 	// Test
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	testImplementation 'org.testcontainers:junit-jupiter:1.19.0'
+
 }
 
 configurations {
